@@ -168,18 +168,3 @@ sf_toupper <-  function(sf_object){
   names(sf_object)[1:(ncol(sf_object)-1)] <- toupper(names(sf_object)[1:(ncol(sf_object)-1)])
   return(sf_object)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

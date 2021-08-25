@@ -4,3 +4,8 @@
 .Ruserdata
 data
 DISEÑO_CARTAS.Rproj
+cartas.Rproj
+data/R06/
+data/insumos_generales/
+data/res/
+rosm.cache/

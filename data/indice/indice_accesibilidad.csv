@@ -1,4 +1,4 @@
-﻿nombre;abrev_insumo;abrev_ind;nombre_grafico;pob_rev;proposito;oportunidad;unidad;grupo;archivo;colores;itera_grafico;itera_accesibilidad;leyenda
+nombre;abrev_insumo;abrev_ind;nombre_grafico;pob_rev;proposito;oportunidad;unidad;grupo;archivo;colores;itera_grafico;itera_accesibilidad;leyenda
 Cultura;icul;icul;Indicador de Accesibilidad a Equipamentos Culturales;personas;libre;area;m² por Habitante;1;carto_acc;#F1C0B0,#ECA491,#E78872,#E26C53,#DD5034,#D83415;1;1;población
 Area Verdes;iav;iav;Indicador de Accesibilidad a Áreas Verdes;personas;libre;area;m² por Habitante;1;carto_acc;#B8F2DD,#9ED6C0,#84BAA3,#6A9E86,#508269,#36664C;1;1;población
 Salud;isal;isal;Indicador de Accesibilidad a Equipamentos de Salud;personas;hacer;area;m² por Habitante;1;carto_acc;#ABE5FE,#92C8ED,#79ABDC,#608ECB,#4771BA,#2E54A9;1;1;población

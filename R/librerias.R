@@ -27,6 +27,3 @@ register_tile_source(light ="http://a.basemaps.cartocdn.com/light_nolabels/${z}/
 
 crs_utm <- 32719
 crs_latlon <- 4326
-
-
-

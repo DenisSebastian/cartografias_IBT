@@ -54,5 +54,3 @@ insumos_acc <- sf_toupper(insumos_acc)
 # Logos
 
 logos <- readPNG('data/insumos_generales/logo/logo.png')
-
-

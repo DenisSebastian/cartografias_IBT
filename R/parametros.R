@@ -29,5 +29,3 @@ indicadores[] <- lapply(indicadores[], FUN = fix_missing)
 # lista de indicadores
 
 indicadores_fuente <- names(indicadores)[names(indicadores) %in% Diccionario_indicadores$abrev_ind]
-
-

@@ -55,8 +55,3 @@ tema_insumos <- theme(
                       legend.direction = 'vertical',
                       #t,r,b,l
                       plot.margin = unit(c(0.4,0.4,0.4,0.4), 'in'))
-
-
-
-
-

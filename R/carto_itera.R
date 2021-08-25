@@ -1,4 +1,3 @@
-
 # Opciones Generales ------------------------------------------------------
 
 options(scipen = 999, stringsAsFactors=F, encoding = "UTF-8", warn=-1)
@@ -7,6 +6,7 @@ options(OutDec= ",")
 
 # Definci√≥n de Regi√≥n de Estudio ------------------------------------------
 
+
 n_reg <- 11
 cod_reg <- sprintf("%02d", n_reg)
 d_reg <- sprintf("%02d", n_reg)
@@ -14,14 +14,17 @@ d_reg <- sprintf("%02d", n_reg)
 
 # Cargar Recursos ---------------------------------------------------------
 
-source("C:/Users/Cecilia Arancibia C/Desktop/Proyecto/DISE—O_CARTAS/R/librerias.R")
-source("C:/Users/Cecilia Arancibia C/Desktop/Proyecto/DISE—O_CARTAS/R/funciones.R")
-source("C:/Users/Cecilia Arancibia C/Desktop/Proyecto/DISE—O_CARTAS/R/temas_cartografias.R")
-source("C:/Users/Cecilia Arancibia C/Desktop/Proyecto/DISE—O_CARTAS/R/load_files.R")
+source("R/librerias.R")
+source("R/funciones.R")
+source("R/temas_cartografias.R")
+source("R/load_files.R")
 source("R/parametros.R")
 
 
 # Ciclo -------------------------------------------------------------------
+
+
+indicadores_fuente <- c('IEM')
 
 
 for(indicador in indicadores_fuente){
@@ -54,20 +57,13 @@ ind_pal <- colors_str_list(colorStr) %>% unlist()
 
 # crear variables con los quiebres ---------------------------------------
 
-if(indicador=="CLUSTERM"){
 vector_indicador <- insumo %>%
   st_drop_geometry() %>%
   pull()
 
-} else{  
-  
-  vector_indicador <- insumo %>%
-    st_drop_geometry() %>%
-    pull()
-  
+if(indicador!="CLUSTERM"){
   vector_indicador <- round(vector_indicador,2)
-  
-  }
+} 
 
 if(indicador=="IEJ"){
   insumo <-
@@ -103,11 +99,9 @@ if(indicador=="IEJ"){
    
 
   breaks <- breaksJenks
-  labs <- gen_labs(insumo$class, breaks = breaksJenks, dig_dif = 0.01)
-  labs <- gsub("\\.", ",", labs)
-
+  labs <- gen_labs(insumo$class, breaks = breaksJenks, dig_dif = 0.01) %>% gsub("\\.",",",.)
   
-   insumo <-
+  insumo <-
      insumo %>%
      mutate(class = cut((vector_indicador),
                       breaks = breaks,
@@ -238,7 +232,7 @@ mapa_base <-
   insumo$class_b <- relevel(insumo$class_b, paste0(levels(insumo$class)[3]," (", levels(insumo$class_a)[3], ")"))
   insumo$class_b <- relevel(insumo$class_b, paste0(levels(insumo$class)[2]," (", levels(insumo$class_a)[2], ")"))
   insumo$class_b <- relevel(insumo$class_b, paste0(levels(insumo$class)[1]," (", levels(insumo$class_a)[1], ")"))
-  
+
   mapa_base <-
     ggplot(bbox_new)+
     #Mapa Base
@@ -334,8 +328,10 @@ width_page <-  ifelse(n_reg %in% reg_alargada , 29.7, 42)
 height_page <-  ifelse(n_reg %in% reg_alargada, 42, 29.7)
 
 
+# ggsave(paste0(ruta_salida_png,"/",  archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
+       # mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
 
-ggsave(paste0(ruta_salida_png,"/",  archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
+ggsave(paste0("data/res/",  archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
        mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
 
 # ggsave(paste0(ruta_salida_pdf, "/", archivo,"_", stringr::str_to_lower(indicador),"_",cod_reg, '.pdf'),
