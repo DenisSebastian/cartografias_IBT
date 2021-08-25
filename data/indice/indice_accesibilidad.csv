@@ -1,0 +1,25 @@
+﻿nombre;abrev_insumo;abrev_ind;nombre_grafico;pob_rev;proposito;oportunidad;unidad;grupo;archivo;colores;itera_grafico;itera_accesibilidad;leyenda
+Cultura;icul;icul;Indicador de Accesibilidad a Equipamentos Culturales;personas;libre;area;m² por Habitante;1;carto_acc;#F1C0B0,#ECA491,#E78872,#E26C53,#DD5034,#D83415;1;1;población
+Area Verdes;iav;iav;Indicador de Accesibilidad a Áreas Verdes;personas;libre;area;m² por Habitante;1;carto_acc;#B8F2DD,#9ED6C0,#84BAA3,#6A9E86,#508269,#36664C;1;1;población
+Salud;isal;isal;Indicador de Accesibilidad a Equipamentos de Salud;personas;hacer;area;m² por Habitante;1;carto_acc;#ABE5FE,#92C8ED,#79ABDC,#608ECB,#4771BA,#2E54A9;1;1;población
+Deportes;idep;idep;Indicador de Accesibilidad a Equipamentos Deportivos;personas;libre;area;m² por Habitante;1;carto_acc;#D2C9FD,#B6AAE7,#9A8BD1,#7E6CBB,#624DA5,#462E8F;1;1;población
+Servicios Publicos;iser;iser;Indicador de Accesibilidad a Servicios Públicos;personas;hacer;area;Servicios públicos cada 1.000 habitantes;1;carto_acc;#F4CDCD,#E6ABA6,#D8897F,#CA6758,#BC4531,#AE230A;1;1;población
+Educacion;ise;ise;Indicador de Accesibilidad a Servicios de Educación;e4a18;hacer;matriculas;Matrículas por niño(a);1;carto_acc;#D83415,#E26C53,#ECA491,#9ED6C0,#6A9E86,#36664C;1;1;e4a18
+Cobertura Vegetal;icv;ICV;Indicador de Cobertura Vegetal;AREA;;;% Cobertura Vegetal;2;carto_amb;#AFECCF,#AFECCF,#76DDAB,#66C266,#3B753D,#3B753D;1;0;AREA
+Amplitud Termica;iata;IATA;Indicador de Amplitud Térmica;AREA;;;°C;2;carto_amb;#F6D945,#F6D945,#EB9C42,#E4602D,#BB280B,#BB280B;1;0;AREA
+;iej;IEJ;Indicador de Escolaridad de Jefe de Hogar;personas;;;Años de Escolaridad;1;carto_soc;#F9E299,#E7C97E,#D5B063,#C39748,#B17E2D,#9F6512;1;0;población
+;irh;IRH;Indicador de Resiliencia de Hogares;hogares;;;Valor normalizado de 0 a 1;1;carto_soc;#EFBBF1,#D299D4,#B577B7,#98559A,#7B337D,#5E1160;1;0;hogares
+;iem;IEM;Indicador de Empleo;personas;;;Valor normalizado de 0 a 1;1;carto_soc;#ABE5FE,#92C8ED,#79ABDC,#608ECB,#4771BA,#2E54A9;1;0;población
+;ipj;IPJ;Indicador de Participación Juvenil en Empleo y Estudio;personas;;;Valor normalizado de 0 a 1;1;carto_soc;#D2C9FD,#B6AAE7,#9A8BD1,#7E6CBB,#624DA5,#462E8F;1;0;población
+;isv;ISV;Indicador de Suficiencia de Viviendas;viviendas;;;Valor normalizado de 0 a 1;1;carto_soc;#B8F2DD,#9ED6C0,#84BAA3,#6A9E86,#508269,#36664C;1;0;viviendas
+;ivi;IVI;Indicador de Calidad de la Vivienda;viviendas;;;Valor normalizado de 0 a 1;1;carto_soc;#F4CDCD,#E6ABA6,#D8897F,#CA6758,#BC4531,#AE230A;1;0;viviendas
+;lvs_prs;ILPE;Indicador ante Delitos Leves contra las Personas;AREA;;;Nivel de Seguridad;2;carto_seg;#C3F7FC,#A9DDE3,#8FC3CA,#75A9B1,#5B8F98,#41757F;1;0;AREA
+;lvs_prp;ILPR;Indicador ante Delitos Leves contra la Propiedad;AREA;;;Nivel de Seguridad;2;carto_seg;#D2C9FD,#B6AAE7,#9A8BD1,#7E6CBB,#624DA5,#462E8F;1;0;AREA
+;grvs_prs;IGPE;Indicador ante Delitos Graves contra las Personas;AREA;;;Nivel de Seguridad;2;carto_seg;#ABE5FE,#92C8ED,#79ABDC,#608ECB,#4771BA,#2E54A9;1;0;AREA
+;grvs_prp;IGPR;Indicador ante Delitos Graves contra la Propiedad;AREA;;;Nivel de Seguridad;2;carto_seg;#F4CDCD,#E6ABA6,#D8897F,#CA6758,#BC4531,#AE230A;1;0;AREA
+;ibt;ibt;Indicador de Bienestar Territorial;;;;Valor normalizado de 0 a 1;2;carto_dim;#C3D4DB,#8DABBA,#5F8299,#3B5D7A,#1E3A59,#142B4A;1;0;
+;dim_acc;dim_acc;Dimensión de Accesibilidad;;;;Valor normalizado de 0 a 1;2;carto;#E8F6F3,#A2D9CE,#45B39D,#138D75,#0E6655,#0B5345;1;0;
+;dim_seg;dim_seg;Dimensión de Seguridad;;;;Valor normalizado de 0 a 1;2;carto;#EADCE8,#D6A8CE,#A760A3,#974794,#821F82,#652368;1;0;
+;dim_soc;dim_soc;Dimensión Socioeconómica;;;;Valor normalizado de 0 a 1;2;carto;#D9CCE2,#B2A1CE,#9473B1,#74539A,#4C3275,#3A224D;1;0;
+;dim_amb;dim_amb;Dimensión Ambiental;;;;Valor normalizado de 0 a 1;2;carto;#FEF5E7,#FAD7A0,#F5B041,#D68910,#9C640C,#7E5109;1;0;
+;zonas_ibt;CLUSTERM;Zonas IBT;;;;;3;carto;#91EBDC,#7697AB,#142B4A;1;0;
