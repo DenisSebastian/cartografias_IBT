@@ -67,12 +67,12 @@ mapa_base_g1 <- function(){
     annotation_scale(plot_unit = "m", location = 'bl', height = unit(0.3, "cm"), style ='ticks') +
     labs(title = titulo, subtitle = subtitulo) +
     tema_insumos
+  
+  return(map_base)
 }
 
 mapa_base_g2 <- function()
 {
-  
-  
   insumo <-
     insumo %>%
     mutate(class_a = cut((vector_indicador),
@@ -130,6 +130,9 @@ mapa_base_g2 <- function()
     annotation_scale(plot_unit = "m", location = 'bl', height = unit(0.3, "cm"), style ='ticks') +
     labs(title = titulo, subtitle = subtitulo) +
     tema_insumos
+  
+ return(mapa_base) 
+  
 }
 
 mapa_base_otros <- function() { 
@@ -164,4 +167,6 @@ mapa_base_otros <- function() {
     annotation_scale(plot_unit = "m", location = 'bl', height = unit(0.3, "cm"), style ='ticks') +
     labs(title = titulo, subtitle = subtitulo) +
     tema_insumos
-  }
+    
+  return(mapa_base)
+}

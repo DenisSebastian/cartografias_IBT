@@ -141,15 +141,10 @@ bbox_new <- bbox_new %>%  # take the bounding box and make it a sf polygon
 
 if(var_ind$grupo==1){
   map_base <- mapa_base_g1()
-  return(map_base)
-
 } else if (var_ind$grupo==2)  {
   map_base <- mapa_base_g2()
-  return(map_base)
-  
 } else { 
   map_base <- mapa_base_otros()
-  return(map_base)
 }
 
 # Composicion -------------------------------------------------------------
