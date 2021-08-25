@@ -7,7 +7,7 @@ options(OutDec= ",")
 # Definción de Región de Estudio ------------------------------------------
 
 
-n_reg <- 11
+n_reg <- 6
 cod_reg <- sprintf("%02d", n_reg)
 d_reg <- sprintf("%02d", n_reg)
 
@@ -22,12 +22,25 @@ source("R/parametros.R")
 source("R/mapa_base.R")
 
 
+# COnfig ------------------------------------------------------------------
+
+set_params()
+set_outdir()
+set_path_insumos()
+load_insumos()
+load_dict()
+set_vars()
+
+indicadores <- fix_insumos(insumos_acc)
+
+lista <- lista_indicadores()
+
 # Ciclo -------------------------------------------------------------------
 
 
 #indicadores_fuente <- c('IEM')
 
-for(indicador in indicadores_fuente){
+for(indicador in lista ){
   
   #indicador <-  indicadores_fuente[1]
 
