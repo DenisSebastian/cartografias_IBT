@@ -10,12 +10,12 @@ params <<- c(col_com = col_com,col_reg = col_reg,col_pob = col_pob,col_ent = col
 # Definciónde Parámetros --------------------------------------------------
 
 set_vars <- function(personas = sel_indicadores(tipo = "personas"),
-                     rural = sel_indicadores(tipo = "AREA")[!rural %in% "IATA"],
+                     rural = sel_indicadores(tipo = "AREA") %>% setdiff(c('IATA')),
                      viviendas = sel_indicadores(tipo = "viviendas"),
                      hogares = sel_indicadores(tipo = "hogares"),
                      ninos = sel_indicadores(tipo = "e4a18"))
 {
-  vars <<- c(personas = personas, rural = rural, viviendas = viviendas,hogares = hogares, ninos = ninos)
+  vars_list <<- c(personas = personas, rural = rural, viviendas = viviendas,hogares = hogares, ninos = ninos)
 }
 
 
@@ -25,11 +25,11 @@ set_vars <- function(personas = sel_indicadores(tipo = "personas"),
 fix_insumos <- function(){
   indicadores <- insumos_acc %>%
     as.data.frame() %>%
-    mutate(across(all_of(vars[['rural']]), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
-    mutate(across(all_of(vars[['personas']]), ~ifelse(PERSONAS <= 0, NA, .x))) %>%
-    mutate(across(all_of(vars[['viviendas']]), ~ifelse(TOTAL_V <= 0, NA, .x))) %>%
-    mutate(across(all_of(vars[['hogares']]), ~ifelse(HOG_N <= 0, NA, .x))) %>%
-    mutate(across(all_of(vars[['ninos']]), ~ifelse(E4A18 <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['rural']]), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
+    mutate(across(all_of(vars_list[['personas']]), ~ifelse(PERSONAS <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['viviendas']]), ~ifelse(TOTAL_V <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['hogares']]), ~ifelse(HOG_N <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['ninos']]), ~ifelse(E4A18 <= 0, NA, .x))) %>%
     st_as_sf()
   
   indicadores[] <- lapply(indicadores[], FUN = fix_missing)
