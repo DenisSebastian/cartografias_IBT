@@ -1,4 +1,4 @@
-bbox_funcion <- function(region) {
+set_bbox_region <- function(region) {
   
   bbox_new <- st_bbox(region)# current bounding box
   

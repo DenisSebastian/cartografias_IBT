@@ -84,7 +84,7 @@ set_breaks()
 
 # bbox
 
-bbox_funcion(region)
+set_bbox_region(region)
 
 
 # Mapa --------------------------------------------------------------------
