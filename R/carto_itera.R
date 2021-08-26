@@ -161,5 +161,5 @@ if(var_ind$grupo==1){
 
 # Composicion -------------------------------------------------------------
 
-composicion()
+composicion(mapa_base)
 }
