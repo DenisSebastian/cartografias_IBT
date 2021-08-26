@@ -38,7 +38,8 @@ load_insumos <- function(){
   
   comunas <<- read_sf(dir_comunas) %>%
     st_transform(crs_utm) %>%
-    filter(REGION == cod_reg)
+    filter(REGION == cod_reg) %>%
+    anadir_centroides()
   
   entidades <<- read_sf(dir_entidades) %>%
     st_transform(crs_utm)

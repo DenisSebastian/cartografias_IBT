@@ -168,3 +168,14 @@ sf_toupper <-  function(sf_object){
   names(sf_object)[1:(ncol(sf_object)-1)] <- toupper(names(sf_object)[1:(ncol(sf_object)-1)])
   return(sf_object)
 }
+
+anadir_centroides <- function(comunas){
+  comunas <- comunas %>%  
+    mutate(
+      CENTROID = map(geometry, st_centroid),
+      COORDS = map(CENTROID, st_coordinates),
+      COORDS_X = map_dbl(COORDS, 1),
+      COORDS_Y = map_dbl(COORDS, 2)
+    )
+  comunas
+}

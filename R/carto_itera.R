@@ -7,7 +7,7 @@ options(OutDec= ",")
 # Definción de Región de Estudio ------------------------------------------
 
 
-n_reg <- 7
+n_reg <- 11
 cod_reg <- sprintf("%02d", n_reg)
 d_reg <- sprintf("%02d", n_reg)
 
@@ -37,7 +37,7 @@ lista <- lista_indicadores()
 
 # Ciclo -------------------------------------------------------------------
 
-lista <- c('ISE')
+lista <- c('IAV')
 #indicadores_fuente <- c('IEM')
 
 for(indicador in lista ){
@@ -77,60 +77,9 @@ if(indicador!="CLUSTERM"){
   vector_indicador <- round(vector_indicador,2)
 } 
 
-if(indicador=="IEJ"){
-  insumo <-
-    insumo %>%
-    mutate(class = cut(insumo$IEJ,
-                       breaks=c(0, 1, 4, 8, 12 ,17, 20),
-                       labels=c("0", "1 - 4", "5 - 8", "9 - 12", "13 - 17", ">17"
-                       ), include.lowest = TRUE))
-  
-  breaks=c(0, 1, 4, 8, 12 ,17, 20)
-  
-  
-} else if (indicador=="CLUSTERM"){
-  # Zonas IBT ---------------------------------------------------------------
-  insumo$CLUSTERM[insumo$CLUSTERM=="HH"] <-"Zona IBT Alto"
-  insumo$CLUSTERM[insumo$CLUSTERM=="NS"] <-"Zona IBT Medio"
-  insumo$CLUSTERM[insumo$CLUSTERM=="LL"] <-"Zona IBT Bajo"
-  colnames(insumo)[colnames(insumo)== "CLUSTERM"] <- "ZONAS_IBT"
-  insumo <-
-    insumo %>%
-    mutate(class = insumo$ZONAS_IBT)
-  insumo$class <- factor(insumo$class, levels = c("Zona IBT Bajo", "Zona IBT Medio", "Zona IBT Alto"))
-  indicador <- "ZONAS_IBT"
-  subtitulo <-  "Zonas IBT"
-  
- } else  {
-   
-   breaksJenks <- classIntervals(na.omit(vector_indicador),
-                                 n = length (ind_pal),
-                                 style = "fisher")$brks
-  
-   breaksJenks <- round(breaksJenks,2)
-   
-
-  breaks <- breaksJenks
-  labs <- gen_labs(insumo$class, breaks = breaksJenks, dig_dif = 0.01) %>% gsub("\\.",",",.)
-  
-  insumo <-
-     insumo %>%
-     mutate(class = cut((vector_indicador),
-                      breaks = breaks,
-                      labels = labs, include.lowest=TRUE))
-
-}
-
+set_breaks()
 
 # Repel y bbox ------------------------------------------------------------
-
-comunas <- comunas %>%  
-  mutate(
-    CENTROID = map(geometry, st_centroid),
-    COORDS = map(CENTROID, st_coordinates),
-    COORDS_X = map_dbl(COORDS, 1),
-    COORDS_Y = map_dbl(COORDS, 2)
-  )
 
 # bbox
 
