@@ -1,13 +1,6 @@
 library(ggplot2)
-# Parámetros --------------------------------------------------------------
-col_com <-  "black"
-col_reg <- "gray30"
-col_pob <- "#CFCAB6"
-col_ent <- "gray50"
-tipo_map <-  "light"
-col_agua <- "#D1EBF7"
-col_calles <- "#FDFEFE"
-my_font <- "sans"
+
+
 # Temas para cartografias -------------------------------------------------
 # Tema para visualización de insumos
 tema_insumos <- theme(
@@ -55,3 +48,4 @@ tema_insumos <- theme(
                       legend.direction = 'vertical',
                       #t,r,b,l
                       plot.margin = unit(c(0.4,0.4,0.4,0.4), 'in'))
+

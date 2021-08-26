@@ -1,31 +1,44 @@
+# Parámetros --------------------------------------------------------------
+set_params <- function(col_com =  "black",col_reg = "gray30",
+                       col_pob = "#CFCAB6",col_ent = "gray50",
+                       tipo_map =  "light",col_agua = "#D1EBF7",
+                       col_calles = "#FDFEFE",my_font = "sans")
+{
+params <<- c(col_com = col_com,col_reg = col_reg,col_pob = col_pob,col_ent = col_ent,tipo_map = tipo_map,col_agua = col_agua,col_calles = col_calles,my_font = my_font) 
+}
+
 # Definciónde Parámetros --------------------------------------------------
 
-vars_personas <- sel_indicadores(tipo = "personas")
-vars_rural <- sel_indicadores(tipo = "AREA")
-vars_rural <-  vars_rural[!vars_rural %in% "IATA"]
-vars_viviendas <- sel_indicadores(tipo = "viviendas")
-vars_hogares <- sel_indicadores(tipo = "hogares")
-vars_ninos <- sel_indicadores(tipo = "e4a18")
+set_vars <- function(personas = sel_indicadores(tipo = "personas"),
+                     rural = sel_indicadores(tipo = "AREA") %>% setdiff(c('IATA')),
+                     viviendas = sel_indicadores(tipo = "viviendas"),
+                     hogares = sel_indicadores(tipo = "hogares"),
+                     ninos = sel_indicadores(tipo = "e4a18"))
+{
+  vars_list <<- list(personas = personas, rural = rural, viviendas = viviendas,hogares = hogares, ninos = ninos)
+}
 
 
 # Actualización de datos por condiciones ----------------------------------
 
-indicadores <- insumos_acc %>%
-  as.data.frame() %>%
-  mutate(across(all_of(vars_rural), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
-  mutate(across(all_of(vars_personas), ~ifelse(PERSONAS <= 0, NA, .x))) %>%
-  mutate(across(all_of(vars_viviendas), ~ifelse(TOTAL_V <= 0, NA, .x))) %>%
-  mutate(across(all_of(vars_hogares), ~ifelse(HOG_N <= 0, NA, .x))) %>%
-  mutate(across(all_of(vars_ninos), ~ifelse(E4A18 <= 0, NA, .x))) %>%
-  st_as_sf()
-
-#summary(indicadores)
-
 # transforma -999 a NA ----------------------------------------------------
-
-indicadores[] <- lapply(indicadores[], FUN = fix_missing)
-#summary(indicadores)
+fix_insumos <- function(insumos_acc){
+  indicadores <- insumos_acc %>%
+    as.data.frame() %>%
+    mutate(across(all_of(vars_list[['rural']]), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
+    mutate(across(all_of(vars_list[['personas']]), ~ifelse(PERSONAS <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['viviendas']]), ~ifelse(TOTAL_V <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['hogares']]), ~ifelse(HOG_N <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['ninos']]), ~ifelse(E4A18 <= 0, NA, .x))) %>%
+    st_as_sf()
+  
+  indicadores[] <- lapply(indicadores[], FUN = fix_missing)
+  indicadores
+}
 
 # lista de indicadores
 
-indicadores_fuente <- names(indicadores)[names(indicadores) %in% Diccionario_indicadores$abrev_ind]
+lista_indicadores <- function(){
+  lista <- names(indicadores)[names(indicadores) %in% Diccionario_indicadores$abrev_ind]
+  lista
+}

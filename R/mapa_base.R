@@ -33,14 +33,14 @@ mapa_base_g1 <- function(){
   mapa_base <-
     ggplot(bbox_new)+
     #Mapa Base
-    annotation_map_tile(type = tipo_map, zoomin = 1)+
+    annotation_map_tile(type = params[['tipo_map']], zoomin = 1)+
     #Capas
-    geom_sf(data = region,  aes(colour = col_reg), fill = "white", size = 0.8, show.legend = FALSE)+
-    geom_sf(data = sin_pob, aes(colour="A"), fill = col_pob, size = 0.3)+
+    geom_sf(data = region,  aes(colour = params[['col_reg']]), fill = "white", size = 0.8, show.legend = FALSE)+
+    geom_sf(data = sin_pob, aes(colour="A"), fill = params[['col_pob']], size = 0.3)+
     geom_sf(data = insumo, aes(fill = class_b), alpha = 0.6,colour=NA) +
-    geom_sf(data = calles, aes(), color= col_calles, alpha= 0.6, size =0.6,show.legend = FALSE) +
-    geom_sf(data = cuerpo_agua, aes(), fill=col_agua, color = NA, show.legend = FALSE)+
-    geom_sf(data = comunas, aes(colour=col_com), fill = NA, size = 0.3,show.legend = FALSE) +
+    geom_sf(data = calles, aes(), color= params[['col_calles']], alpha= 0.6, size =0.6,show.legend = FALSE) +
+    geom_sf(data = cuerpo_agua, aes(), fill=params[['col_agua']], color = NA, show.legend = FALSE)+
+    geom_sf(data = comunas, aes(colour=params[['col_com']]), fill = NA, size = 0.3,show.legend = FALSE) +
     #Limites bbox
     coord_sf(xlim = st_coordinates(bbox_new)[c(1,2),1], # min & max of x values
              ylim = st_coordinates(bbox_new)[c(2,3),2]) +
@@ -51,7 +51,7 @@ mapa_base_g1 <- function(){
     #Paleta color sin poblacion
     scale_color_manual(
       name = c(""),
-      values = c("A" = col_pob),
+      values = c("A" = params[['col_pob']]),
       labels = c(name_sin(indicador)))+
     #Guias Leyenda
     guides(size=guide_legend(direction = "vertical"),
@@ -59,7 +59,7 @@ mapa_base_g1 <- function(){
            colour=guide_legend(order = 2),
            pattern=guide_legend(order=3))+
     #Nombre comunas
-    geom_text_repel(data = comunas, aes(x = COORDS_X, y = COORDS_Y, label = NOM_COMUNA, family = my_font)
+    geom_text_repel(data = comunas, aes(x = COORDS_X, y = COORDS_Y, label = NOM_COMUNA, family = params[['my_font']])
                     , size = 3, max.overlaps = Inf)+
     #Elementos carta
     annotation_north_arrow(location="tr", rotation = NULL, height = unit(1,'cm'),
@@ -96,14 +96,14 @@ mapa_base_g2 <- function()
   mapa_base <-
     ggplot(bbox_new)+
     #Mapa Base
-    annotation_map_tile(type = tipo_map, zoomin = 1)+
+    annotation_map_tile(type = params[['tipo_map']], zoomin = 1)+
     #Capas
-    geom_sf(data = region,  aes(colour = col_reg), fill = "white", size = 0.8, show.legend = FALSE)+
-    #geom_sf(data = sin_pob, aes(colour="A"), fill = col_pob, size = 0.3)+
+    geom_sf(data = region,  aes(colour = params[['col_reg']]), fill = "white", size = 0.8, show.legend = FALSE)+
+    #geom_sf(data = sin_pob, aes(colour="A"), fill = params[['col_pob']], size = 0.3)+
     geom_sf(data = insumo, aes(fill = class_b), alpha = .6,colour=NA) +
-    geom_sf(data=calles, aes(), color= col_calles, alpha= 0.6, size =0.6,show.legend = FALSE) +
-    geom_sf(data = cuerpo_agua, aes(), fill=col_agua, color = NA, show.legend = FALSE)+
-    geom_sf(data = comunas, aes(colour=col_com), fill = NA, size = 0.3,show.legend = FALSE) +
+    geom_sf(data=calles, aes(), color= params[['col_calles']], alpha= 0.6, size =0.6,show.legend = FALSE) +
+    geom_sf(data = cuerpo_agua, aes(), fill=params[['col_agua']], color = NA, show.legend = FALSE)+
+    geom_sf(data = comunas, aes(colour=params[['col_com']]), fill = NA, size = 0.3,show.legend = FALSE) +
     #Limites bbox
     coord_sf(xlim = st_coordinates(bbox_new)[c(1,2),1], # min & max of x values
              ylim = st_coordinates(bbox_new)[c(2,3),2]) +
@@ -114,7 +114,7 @@ mapa_base_g2 <- function()
     #Paleta color sin poblacion
     scale_color_manual(
       name = c(""),
-      values = c("A" = col_pob),
+      values = c("A" = params[['col_pob']]),
       labels = c(name_sin(indicador)))+
     #Guias Leyenda
     guides(size=guide_legend(direction = "vertical"),
@@ -122,7 +122,7 @@ mapa_base_g2 <- function()
            colour=guide_legend(order = 2),
            pattern=guide_legend(order=3))+
     #Nombre comunas
-    geom_text_repel(data = comunas, aes(x = COORDS_X, y = COORDS_Y, label = NOM_COMUNA, family = my_font)
+    geom_text_repel(data = comunas, aes(x = COORDS_X, y = COORDS_Y, label = NOM_COMUNA, family = params[['my_font']])
                     , size = 3, max.overlaps = Inf)+
     #Elementos carta
     annotation_north_arrow(location="tr", rotation = NULL, height = unit(1,'cm'),
@@ -138,20 +138,20 @@ mapa_base_g2 <- function()
 mapa_base_otros <- function() { 
   mapa_base <-
     ggplot(bbox_new)+
-    annotation_map_tile(type = tipo_map, zoomin = 1)+
+    annotation_map_tile(type = params[['tipo_map']], zoomin = 1)+
     #Capas
-    geom_sf(data = region,  aes(colour = col_reg), fill = "white", size = 0.8, show.legend = FALSE)+
+    geom_sf(data = region,  aes(colour = params[['col_reg']]), fill = "white", size = 0.8, show.legend = FALSE)+
     geom_sf(data = insumo, aes(fill = class), alpha = .6,colour=NA) +
-    geom_sf(data=calles, aes(), color= col_calles, alpha= 0.6, size =0.6,show.legend = FALSE) +
-    geom_sf(data = cuerpo_agua, aes(), fill=col_agua, color = NA, show.legend = FALSE)+
-    geom_sf(data = comunas, aes(colour=col_com), fill = NA, size = 0.3,show.legend = FALSE) +
+    geom_sf(data=calles, aes(), color= params[['col_calles']], alpha= 0.6, size =0.6,show.legend = FALSE) +
+    geom_sf(data = cuerpo_agua, aes(), fill=params[['col_agua']], color = NA, show.legend = FALSE)+
+    geom_sf(data = comunas, aes(colour=params[['col_com']]), fill = NA, size = 0.3,show.legend = FALSE) +
     #Limites bbox
     coord_sf(xlim = st_coordinates(bbox_new)[c(1,2),1], # min & max of x values
              ylim = st_coordinates(bbox_new)[c(2,3),2]) +
     #Paleta color sin poblacion
     scale_color_manual(
       name = c(""),
-      values = c("A" = col_pob),
+      values = c("A" = params[['col_pob']]),
       labels = c(name_sin(indicador)))+
     #Paleta colores indicador
     scale_fill_manual(
@@ -159,7 +159,7 @@ mapa_base_otros <- function() {
       values = ind_pal, na.translate=FALSE,
       guide=guide_legend(reverse=TRUE))+
     #Nombre comunas
-    geom_text_repel(data = comunas, aes(x = COORDS_X, y = COORDS_Y, label = NOM_COMUNA, family = my_font)
+    geom_text_repel(data = comunas, aes(x = COORDS_X, y = COORDS_Y, label = NOM_COMUNA, family = params[['my_font']])
                     , size = 3, max.overlaps = Inf)+
     #Elementos carta
     annotation_north_arrow(location="tr", rotation = NULL, height = unit(1,'cm'),
