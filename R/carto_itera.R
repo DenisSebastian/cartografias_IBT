@@ -37,7 +37,7 @@ lista <- lista_indicadores()
 
 # Ciclo -------------------------------------------------------------------
 
-
+lista <- c('IBT')
 #indicadores_fuente <- c('IEM')
 
 for(indicador in lista ){
@@ -153,11 +153,11 @@ bbox_new <- bbox_new %>%  # take the bounding box and make it a sf polygon
 # Mapa --------------------------------------------------------------------
 
 if(var_ind$grupo==1){
-  map_base <- mapa_base_g1()
+  mapa_base <- mapa_base_g1()
 } else if (var_ind$grupo==2)  {
-  map_base <- mapa_base_g2()
+  mapa_base <- mapa_base_g2()
 } else { 
-  map_base <- mapa_base_otros()
+  mapa_base <- mapa_base_otros()
 }
 
 # Composicion -------------------------------------------------------------

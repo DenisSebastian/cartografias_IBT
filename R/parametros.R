@@ -15,14 +15,14 @@ set_vars <- function(personas = sel_indicadores(tipo = "personas"),
                      hogares = sel_indicadores(tipo = "hogares"),
                      ninos = sel_indicadores(tipo = "e4a18"))
 {
-  vars_list <<- c(personas = personas, rural = rural, viviendas = viviendas,hogares = hogares, ninos = ninos)
+  vars_list <<- list(personas = personas, rural = rural, viviendas = viviendas,hogares = hogares, ninos = ninos)
 }
 
 
 # Actualización de datos por condiciones ----------------------------------
 
 # transforma -999 a NA ----------------------------------------------------
-fix_insumos <- function(){
+fix_insumos <- function(insumos_acc){
   indicadores <- insumos_acc %>%
     as.data.frame() %>%
     mutate(across(all_of(vars_list[['rural']]), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
