@@ -13,7 +13,7 @@ mapa_base_g1 <- function(){
     mutate(class_b = str_c(class," (", class_a, ")"))
   
   insumo$class_b <- as.factor(insumo$class_b)
-  
+   
   insumo$class_b <- relevel(insumo$class_b, paste0(levels(insumo$class)[6]," (", levels(insumo$class_a)[6], ")"))
   insumo$class_b <- relevel(insumo$class_b, paste0(levels(insumo$class)[5]," (", levels(insumo$class_a)[5], ")"))
   insumo$class_b <- relevel(insumo$class_b, paste0(levels(insumo$class)[4]," (", levels(insumo$class_a)[4], ")"))

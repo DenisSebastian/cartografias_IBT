@@ -4,7 +4,7 @@ set_params <- function(col_com =  "black",col_reg = "gray30",
                        tipo_map =  "light",col_agua = "#D1EBF7",
                        col_calles = "#FDFEFE",my_font = "sans")
 {
-params <<- c(col_com = col_com,col_reg = col_reg,col_pob = col_pob,col_ent = col_ent,tipo_map = tipo_map,col_agua = col_agua,col_calles = col_calles,my_font = my_font) 
+params <<- list(col_com = col_com,col_reg = col_reg,col_pob = col_pob,col_ent = col_ent,tipo_map = tipo_map,col_agua = col_agua,col_calles = col_calles,my_font = my_font) 
 }
 
 # Definciónde Parámetros --------------------------------------------------

@@ -1,5 +1,15 @@
 
 set_breaks <- function(){
+  vector_indicador <<- insumo %>%
+    st_drop_geometry() %>%
+    pull()
+  
+  if(indicador!="CLUSTERM"){
+    vector_indicador <<- round(vector_indicador,2)
+  } 
+
+  
+  
   if(indicador=="IEJ"){
     insumo <<-
       insumo %>%
@@ -33,12 +43,12 @@ set_breaks <- function(){
      
   
       breaks <<- breaksJenks
-      labs <<- gen_labs(insumo$class, breaks = breaksJenks, dig_dif = 0.01) %>% gsub("\\.",",",.)
+      labels <- gen_labs(insumo$class, breaks = breaksJenks, dig_dif = 0.01) %>% gsub("\\.",",",.)
       
       insumo <<-
          insumo %>%
          mutate(class = cut((vector_indicador),
                           breaks = breaks,
-                          labels = labs, include.lowest=TRUE))
+                          labels = labels, include.lowest=TRUE))
   }
 }

@@ -22,6 +22,8 @@ source("R/parametros.R")
 source("R/mapa_base.R")
 source("R/composicion.R")
 source("R/bbox.R")
+source("R/quiebres.R")
+source("R/elementos_texto.R")
 
 # COnfig ------------------------------------------------------------------
 
@@ -58,25 +60,9 @@ insumo <- indicadores %>%
 
 # definicón de nombres ----------------------------------------------------
 
-var_ind <- Diccionario_indicadores %>%
-  filter(abrev_ind==indicador)
-
-titulo <- make_title(element_1 = var_ind$nombre_grafico, element_2 =  region$NOM_REGION, nchar_max = 50)
-subtitulo <- var_ind$unidad
-archivo <- var_ind$archivo
-colorStr <- as.character(Diccionario_indicadores[Diccionario_indicadores$abrev_ind == indicador,
-                                                 colnames(Diccionario_indicadores) == "colores"])
-ind_pal <- colors_str_list(colorStr) %>% unlist()
+set_text_elements()
 
 # crear variables con los quiebres ---------------------------------------
-
-vector_indicador <- insumo %>%
-  st_drop_geometry() %>%
-  pull()
-
-if(indicador!="CLUSTERM"){
-  vector_indicador <- round(vector_indicador,2)
-} 
 
 set_breaks()
 

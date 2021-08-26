@@ -39,7 +39,12 @@ load_insumos <- function(){
   comunas <<- read_sf(dir_comunas) %>%
     st_transform(crs_utm) %>%
     filter(REGION == cod_reg) %>%
-    anadir_centroides()
+    mutate(
+      CENTROID = map(geometry, st_centroid),
+      COORDS = map(CENTROID, st_coordinates),
+      COORDS_X = map_dbl(COORDS, 1),
+      COORDS_Y = map_dbl(COORDS, 2)
+    )
   
   entidades <<- read_sf(dir_entidades) %>%
     st_transform(crs_utm)
