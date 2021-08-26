@@ -20,7 +20,7 @@ source("R/temas_cartografias.R")
 source("R/load_files.R")
 source("R/parametros.R")
 source("R/mapa_base.R")
-
+source("R/composicion.R")
 
 # Ciclo -------------------------------------------------------------------
 
@@ -33,7 +33,6 @@ for(indicador in indicadores_fuente){
 
 set.seed(1) #Incorporacion de semilla
 
-tic()
 
 print(paste0("Procesando: ", indicador))
 
@@ -140,40 +139,14 @@ bbox_new <- bbox_new %>%  # take the bounding box and make it a sf polygon
 # Mapa --------------------------------------------------------------------
 
 if(var_ind$grupo==1){
-  map_base <- mapa_base_g1()
+  mapa_base <- mapa_base_g1()
 } else if (var_ind$grupo==2)  {
-  map_base <- mapa_base_g2()
+  mapa_base <- mapa_base_g2()
 } else { 
-  map_base <- mapa_base_otros()
+  mapa_base <- mapa_base_otros()
 }
 
 # Composicion -------------------------------------------------------------
 
-logos_grob <- grobTree(rasterGrob(logos, x=0.9, hjust=1))
-mapa_insumo <- grid.arrange(grob(), # margen
-                            logos_grob,# logos
-                            mapa_base, #plot
-                            heights = c(unit(1,'cm'), # altura margen
-                                        unit(0.7,'cm'), # tamano logos
-                                        unit(25,'cm'))) # altura plot
-
-print(paste0("Guardando Mapa de Indicador: ", indicador))
-   
-reg_alargada <- c(11, 12, 2)
-width_page <-  ifelse(n_reg %in% reg_alargada , 29.7, 42)
-height_page <-  ifelse(n_reg %in% reg_alargada, 42, 29.7)
-
-
-# ggsave(paste0(ruta_salida_png,"/",  archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
-       # mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
-
-ggsave(paste0("data/res/",  archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
-       mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
-
-# ggsave(paste0(ruta_salida_pdf, "/", archivo,"_", stringr::str_to_lower(indicador),"_",cod_reg, '.pdf'),
-#        mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
-
-toc()
-
+composicion
 }
-

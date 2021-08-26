@@ -68,7 +68,7 @@ mapa_base_g1 <- function(){
     labs(title = titulo, subtitle = subtitulo) +
     tema_insumos
   
-  return(map_base)
+  return(mapa_base)
 }
 
 mapa_base_g2 <- function()
