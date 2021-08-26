@@ -7,7 +7,7 @@ options(OutDec= ",")
 # Definción de Región de Estudio ------------------------------------------
 
 
-n_reg <- 6
+n_reg <- 7
 cod_reg <- sprintf("%02d", n_reg)
 d_reg <- sprintf("%02d", n_reg)
 
@@ -37,7 +37,7 @@ lista <- lista_indicadores()
 
 # Ciclo -------------------------------------------------------------------
 
-lista <- c('IBT')
+lista <- c('ISE')
 #indicadores_fuente <- c('IEM')
 
 for(indicador in lista ){
@@ -161,5 +161,5 @@ if(var_ind$grupo==1){
 
 # Composicion -------------------------------------------------------------
 
-composicion
+composicion()
 }
