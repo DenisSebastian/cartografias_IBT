@@ -178,3 +178,18 @@ anadir_centroides <- function(comunas){
       COORDS_Y = map_dbl(COORDS, 2)
     )
 }
+
+# transforma -999 a NA ----------------------------------------------------
+fix_insumos <- function(insumos_acc){
+  indicadores <- insumos_acc %>%
+    as.data.frame() %>%
+    mutate(across(all_of(vars_list[['rural']]), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
+    mutate(across(all_of(vars_list[['personas']]), ~ifelse(PERSONAS <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['viviendas']]), ~ifelse(TOTAL_V <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['hogares']]), ~ifelse(HOG_N <= 0, NA, .x))) %>%
+    mutate(across(all_of(vars_list[['ninos']]), ~ifelse(E4A18 <= 0, NA, .x))) %>%
+    st_as_sf()
+  
+  indicadores[] <- lapply(indicadores[], FUN = fix_missing)
+  indicadores
+}

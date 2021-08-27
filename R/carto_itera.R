@@ -27,14 +27,11 @@ source("R/elementos_texto.R")
 
 # COnfig ------------------------------------------------------------------
 
-set_params()
-set_outdir()
-set_path_insumos()
-load_insumos()
+set_color_variables()
+set_outdir('data/res')
+set_directorios_insumos()
 load_dict()
-set_vars()
-
-indicadores <- fix_insumos(insumos_acc)
+load_insumos()
 
 lista <- lista_indicadores()
 

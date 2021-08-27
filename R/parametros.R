@@ -1,5 +1,5 @@
 # Parámetros --------------------------------------------------------------
-set_params <- function(col_com =  "black",col_reg = "gray30",
+set_color_variables <- function(col_com =  "black",col_reg = "gray30",
                        col_pob = "#CFCAB6",col_ent = "gray50",
                        tipo_map =  "light",col_agua = "#D1EBF7",
                        col_calles = "#FDFEFE",my_font = "sans")
@@ -21,20 +21,6 @@ set_vars <- function(personas = sel_indicadores(tipo = "personas"),
 
 # Actualización de datos por condiciones ----------------------------------
 
-# transforma -999 a NA ----------------------------------------------------
-fix_insumos <- function(insumos_acc){
-  indicadores <- insumos_acc %>%
-    as.data.frame() %>%
-    mutate(across(all_of(vars_list[['rural']]), ~ifelse(MANZ_EN == "RURAL", NA, .x))) %>%
-    mutate(across(all_of(vars_list[['personas']]), ~ifelse(PERSONAS <= 0, NA, .x))) %>%
-    mutate(across(all_of(vars_list[['viviendas']]), ~ifelse(TOTAL_V <= 0, NA, .x))) %>%
-    mutate(across(all_of(vars_list[['hogares']]), ~ifelse(HOG_N <= 0, NA, .x))) %>%
-    mutate(across(all_of(vars_list[['ninos']]), ~ifelse(E4A18 <= 0, NA, .x))) %>%
-    st_as_sf()
-  
-  indicadores[] <- lapply(indicadores[], FUN = fix_missing)
-  indicadores
-}
 
 # lista de indicadores
 
