@@ -1,6 +1,6 @@
 
 set_breaks <- function(){
-  vector_indicador <<- insumo %>%
+  vector_indicador <<- indicador_seleccionado %>%
     st_drop_geometry() %>%
     pull()
   
@@ -11,9 +11,9 @@ set_breaks <- function(){
   
   
   if(indicador=="IEJ"){
-    insumo <<-
-      insumo %>%
-      mutate(class = cut(insumo$IEJ,
+    indicador_seleccionado <<-
+      indicador_seleccionado %>%
+      mutate(class = cut(indicador_seleccionado$IEJ,
                          breaks=c(0, 1, 4, 8, 12 ,17, 20),
                          labels=c("0", "1 - 4", "5 - 8", "9 - 12", "13 - 17", ">17"
                          ), include.lowest = TRUE))
@@ -23,15 +23,15 @@ set_breaks <- function(){
     
   } else if (indicador=="CLUSTERM"){
     # Zonas IBT ---------------------------------------------------------------
-    insumo$CLUSTERM[insumo$CLUSTERM=="HH"] <-"Zona IBT Alto"
-    insumo$CLUSTERM[insumo$CLUSTERM=="NS"] <-"Zona IBT Medio"
-    insumo$CLUSTERM[insumo$CLUSTERM=="LL"] <-"Zona IBT Bajo"
-    colnames(insumo)[colnames(insumo)== "CLUSTERM"] <- "ZONAS_IBT"
-    insumo <-
-      insumo %>%
-      mutate(class = insumo$ZONAS_IBT)
-    insumo$class <- factor(insumo$class, levels = c("Zona IBT Bajo", "Zona IBT Medio", "Zona IBT Alto"))
-    insumo <<- insumo
+    indicador_seleccionado$CLUSTERM[indicador_seleccionado$CLUSTERM=="HH"] <-"Zona IBT Alto"
+    indicador_seleccionado$CLUSTERM[indicador_seleccionado$CLUSTERM=="NS"] <-"Zona IBT Medio"
+    indicador_seleccionado$CLUSTERM[indicador_seleccionado$CLUSTERM=="LL"] <-"Zona IBT Bajo"
+    colnames(indicador_seleccionado)[colnames(indicador_seleccionado)== "CLUSTERM"] <- "ZONAS_IBT"
+    indicador_seleccionado <-
+      indicador_seleccionado %>%
+      mutate(class = indicador_seleccionado$ZONAS_IBT)
+    indicador_seleccionado$class <- factor(indicador_seleccionado$class, levels = c("Zona IBT Bajo", "Zona IBT Medio", "Zona IBT Alto"))
+    indicador_seleccionado <<- indicador_seleccionado
     indicador <<- "ZONAS_IBT"
     subtitulo <<-  "Zonas IBT"
     
@@ -43,10 +43,10 @@ set_breaks <- function(){
      
   
       breaks <<- breaksJenks
-      labels <- gen_labs(insumo$class, breaks = breaksJenks, dig_dif = 0.01) %>% gsub("\\.",",",.)
+      labels <- gen_labs(indicador_seleccionado$class, breaks = breaksJenks, dig_dif = 0.01) %>% gsub("\\.",",",.)
       
-      insumo <<-
-         insumo %>%
+      indicador_seleccionado <<-
+         indicador_seleccionado %>%
          mutate(class = cut((vector_indicador),
                           breaks = breaks,
                           labels = labels, include.lowest=TRUE))

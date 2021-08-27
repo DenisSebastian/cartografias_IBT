@@ -1,4 +1,4 @@
-set_text_elements <- function(){
+set_text_elements <- function(indicador){
   var_ind <<- Diccionario_indicadores %>%
     filter(abrev_ind==indicador)
   

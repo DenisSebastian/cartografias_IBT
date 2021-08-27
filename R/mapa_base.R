@@ -2,7 +2,7 @@ mapa_base_g1 <- function(){
   # Manzanas con achurado ---------------------------------------------------
   
   insumo <-
-    insumo %>%
+    indicador_seleccionado %>%
     mutate(class_a = cut((vector_indicador),
                          breaks = breaks,
                          labels=c("Muy Bajo", "Bajo", "Medio Bajo","Medio Alto", "Alto", "Muy Alto"),
@@ -74,7 +74,7 @@ mapa_base_g1 <- function(){
 mapa_base_g2 <- function()
 {
   insumo <-
-    insumo %>%
+    indicador_seleccionado %>%
     mutate(class_a = cut((vector_indicador),
                          breaks = breaks,
                          labels=c("Muy Bajo", "Bajo", "Medio Bajo","Medio Alto", "Alto", "Muy Alto"),
@@ -141,7 +141,7 @@ mapa_base_otros <- function() {
     annotation_map_tile(type = params[['tipo_map']], zoomin = 1)+
     #Capas
     geom_sf(data = region,  aes(colour = params[['col_reg']]), fill = "white", size = 0.8, show.legend = FALSE)+
-    geom_sf(data = insumo, aes(fill = class), alpha = .6,colour=NA) +
+    geom_sf(data = indicador_seleccionado, aes(fill = class), alpha = .6,colour=NA) +
     geom_sf(data=calles, aes(), color= params[['col_calles']], alpha= 0.6, size =0.6,show.legend = FALSE) +
     geom_sf(data = cuerpo_agua, aes(), fill=params[['col_agua']], color = NA, show.legend = FALSE)+
     geom_sf(data = comunas, aes(colour=params[['col_com']]), fill = NA, size = 0.3,show.legend = FALSE) +

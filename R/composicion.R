@@ -1,5 +1,5 @@
 
-composicion <- function(mapa_base,salida = "data/res/"){ 
+composicion <- function(mapa_base, type = c('pdf,png')){ 
   
   logos_grob <- grobTree(rasterGrob(logos, x=0.9, hjust=1))
   mapa_insumo <- grid.arrange(grob(), # margen
@@ -19,10 +19,13 @@ composicion <- function(mapa_base,salida = "data/res/"){
   # ggsave(paste0(ruta_salida_png,"/",  archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
   # mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
   
-  ggsave(paste0(salida , archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
-         mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
-  
-  # ggsave(paste0(ruta_salida_pdf, "/", archivo,"_", stringr::str_to_lower(indicador),"_",cod_reg, '.pdf'),
-  #        mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
+  if ('png' %in% type){
+    ggsave(paste0(ruta_salida,"/png/", archivo,"_",stringr::str_to_lower(indicador),"_",cod_reg, '.png'),
+           mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
+  }
+  if ('pdf' %in% type ){
+    ggsave(paste0(ruta_salida, "/pdf/", archivo,"_", stringr::str_to_lower(indicador),"_",cod_reg, '.pdf'),
+           mapa_insumo, width = width_page, height = height_page, units = 'cm', dpi = 300,limitsize = F)
+  } 
   
 }

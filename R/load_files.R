@@ -5,8 +5,9 @@
 # Ruta salida -------------------------------------------------------------
 
 set_outdir <- function(outdir = paste0(ruta_salida, "R",cod_reg, "/cartas")){
-  ruta_salida_pdf <<- paste0(outdir,"/pdf")
-  ruta_salida_png <<- paste0(outdir, "/png")
+  ruta_salida <<- outdir
+  ruta_salida_pdf <- paste0(outdir,"/pdf")
+  ruta_salida_png <- paste0(outdir, "/png")
   make_dir(path = ruta_salida_pdf)
   make_dir(path = ruta_salida_png)
 }
