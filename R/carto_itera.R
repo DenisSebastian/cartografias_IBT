@@ -31,5 +31,5 @@ cartasPlot('IAV')
 # Ciclo -------------------------------------------------------------------
 
 for(indicador in lista_indicadores() ){
-  cartasPlot()
+  cartasPlot(indicador)
 }

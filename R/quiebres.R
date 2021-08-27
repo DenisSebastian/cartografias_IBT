@@ -1,5 +1,5 @@
 
-set_breaks <- function(){
+set_breaks <- function(indicador){
   vector_indicador <<- indicador_seleccionado %>%
     st_drop_geometry() %>%
     pull()

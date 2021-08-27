@@ -25,6 +25,6 @@ set_vars <- function(personas = sel_indicadores(tipo = "personas"),
 # lista de indicadores
 
 lista_indicadores <- function(){
-  lista <- names(indicadores)[names(indicadores) %in% Diccionario_indicadores$abrev_ind]
+  lista <- names(mz_indicadores)[names(mz_indicadores) %in% Diccionario_indicadores$abrev_ind]
   lista
 }

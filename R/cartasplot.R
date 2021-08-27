@@ -43,7 +43,7 @@ cartasPlot <- function(indicador) {
   
   # filtro de indicador -----------------------------------------------------
   
-  indicador_seleccionado <- mz_indicadores %>%
+  indicador_seleccionado <<- mz_indicadores %>%
     dplyr::select(all_of(indicador))
   
   # definicón de nombres ----------------------------------------------------
@@ -52,7 +52,7 @@ cartasPlot <- function(indicador) {
   
   # crear variables con los quiebres ---------------------------------------
   
-  set_breaks()
+  set_breaks(indicador)
   
   # Repel y bbox ------------------------------------------------------------
   
@@ -63,11 +63,11 @@ cartasPlot <- function(indicador) {
   # Mapa --------------------------------------------------------------------
   
   if(var_ind$grupo==1){
-    mapa_base <- mapa_base_g1()
+    mapa_base <- mapa_base_g1(indicador)
   } else if (var_ind$grupo==2)  {
-    mapa_base <- mapa_base_g2()
+    mapa_base <- mapa_base_g2(indicador)
   } else { 
-    mapa_base <- mapa_base_otros()
+    mapa_base <- mapa_base_otros(indicador)
   }
   
   # Composicion -------------------------------------------------------------

@@ -1,4 +1,4 @@
-mapa_base_g1 <- function(){
+mapa_base_g1 <- function(indicador){
   # Manzanas con achurado ---------------------------------------------------
   
   insumo <-
@@ -23,7 +23,7 @@ mapa_base_g1 <- function(){
   
   
   pobRelevante <- pobRelevante_f(indicador)
-  sin_pob <- indicadores %>%
+  sin_pob <- mz_indicadores %>%
     as.data.frame() %>%
     dplyr::filter(!!sym(pobRelevante) == 0) %>%
     st_as_sf() %>%
@@ -71,7 +71,7 @@ mapa_base_g1 <- function(){
   return(mapa_base)
 }
 
-mapa_base_g2 <- function()
+mapa_base_g2 <- function(indicador)
 {
   insumo <-
     indicador_seleccionado %>%
@@ -135,7 +135,7 @@ mapa_base_g2 <- function()
   
 }
 
-mapa_base_otros <- function() { 
+mapa_base_otros <- function(indicador) { 
   mapa_base <-
     ggplot(bbox_new)+
     annotation_map_tile(type = params[['tipo_map']], zoomin = 1)+
